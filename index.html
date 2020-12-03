@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor() {
+                super()
+
+                this.state = {
+                    name: 'serafim',
+                    years: '22',
+
+                    // btn
+                    btnActivate: false,
+                    btnStyles: {
+                        backgroundColor: 'green'
+                    }
+                }
+
+
+            }
+
+            getDate() {
+                return new Date()
+            }
+
+            testAlert(name) {
+                const date = this.getDate()
+                alert(`Name: ${name}; Date: ${date} `)
+                this.setState({btnActivate: true});
+            }
+
+            changeBtnColor() {
+
+            }
+
+            render() {
+                return <div>
+                        <p>имя:  { this.state.name } </p>
+                        <p>возраст: { this.state.years } </p>
+                        <button id="testId" style={ this.state.btnActivate ? this.state.btnStyles : {} } className="btn btnAlert" onClick={() => this.testAlert('firstParam')}>btn</button>
+                    </div>
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
