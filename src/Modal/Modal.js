@@ -20,10 +20,10 @@ class Modal extends Component{
     render() {
         return (
             <div>
-                <div className="modal-container" style={this.state.isModalOpen ? {display: "block"} : {display: "none"}}>
+                <div className="modal-container" style={this.state.isModalOpen ? {display: "flex"} : {display: "none"}}>
                     <div className="modal-dialog">
-                        <div className="modal-title">
-                            <h3 className="modal-title__heading">Modal</h3>
+                        <div className="modal-header">
+                            <h3 className="modal-heading">Modal</h3>
                         </div>
                         <div className="modal-body">
                             <div className="modal-body__content">
@@ -42,7 +42,9 @@ class Modal extends Component{
                         </div>
                     </div>
                 </div>
-                <button onClick={this.changeModalStatus}>Save</button>
+                <div className="btn-item">
+                    <button className="btn done" onClick={this.changeModalStatus}>Save</button>
+                </div>
             </div>
         )
     }
