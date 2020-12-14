@@ -11,9 +11,9 @@ class Modal extends Component{
 
     changeModalStatus = () => {
         const modalStatus = this.state.isModalOpen
-        console.log('modalStatus', modalStatus)
+        // console.log('modalStatus', modalStatus)
         const needModalStatus = !modalStatus
-        console.log('needModalStatus', needModalStatus)
+        // console.log('needModalStatus', needModalStatus)
         this.setState({isModalOpen: needModalStatus})
     }
 

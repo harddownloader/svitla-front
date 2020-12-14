@@ -4,27 +4,12 @@ import ReactDOM from 'react-dom'
 import './App.scss';
 // import Albom from './Album'
 import Modal from './Modal/Modal'
+// import ModalMaterial from './Modal/ModalMaterial'
+import ProductsGrid from './Products/ProductsGrid'
 
 class App extends Component {
   constructor() {
     super()
-    this.products = [
-      {
-        name: 'Product 1',
-        price: '99.00',
-        imageUrl: '/product1.jpg'
-      },
-      {
-        name: 'Product 2',
-        price: '105.00',
-        imageUrl: '/product2.jpg'
-      },
-      {
-        name: 'Product 3',
-        price: '129.00',
-        imageUrl: '/product3.jpg'
-      },
-    ]
   }
 
   render() {
@@ -32,6 +17,8 @@ class App extends Component {
       // <Albom />
       <div>
         <Modal />
+        <ProductsGrid />
+        {/* <ModalMaterial /> */}
       </div>
     );
   }
