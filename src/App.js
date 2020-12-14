@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom'
 
-import './App.css';
+import './App.scss';
 // import Albom from './Album'
-import Modal from './Modal'
+import Modal from './Modal/Modal'
 
 class App extends Component {
   constructor() {
