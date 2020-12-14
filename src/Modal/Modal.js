@@ -6,11 +6,6 @@ class Modal extends Component{
         super()
         this.state = {
             isModalOpen: false,
-            modalStyles: {
-                container: {
-                    display: () => this.isModalOpen ? {display: 'block'} : {display: 'none'}
-                }
-            }
         }
     }
 
