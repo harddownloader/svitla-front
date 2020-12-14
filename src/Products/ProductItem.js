@@ -9,8 +9,8 @@ class ProductItem extends Component{
     
     render() {
         return(
-            <div>
-                <div>
+            <div className="product-card">
+                <div className="product-wrapper">
                     <div className="productImg">
                         <img src={this.props.product.imageUrl} alt={this.props.product.imageAlt} />
                     </div>
@@ -20,7 +20,7 @@ class ProductItem extends Component{
                     <div className="productPrice">
                     <p>{this.props.product.price}</p>
                     </div>
-
+                    
                     <button className="buyBtn">Buy</button>
                 </div>
             </div>

@@ -9,8 +9,19 @@ class CardIten extends Component {
 
     render() {
         return(
-            <div className="card-item">
-                
+            <div className="list-item">
+                <div className="product-img">
+                    <img src="" alt=""/>
+                </div>
+                <div className="product-name">
+                    <span>Name</span>
+                </div>
+                <div className="product-qty">
+                    <span>-</span>
+                    <span>1</span>
+                    <span>+</span>
+                </div>
+                <div className="product-cost">0 рублей</div>
             </div>
         )
     }

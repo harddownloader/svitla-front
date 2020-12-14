@@ -36,7 +36,7 @@ class ProductGrid extends Component {
         })
       
         return(
-            <div>
+            <div className="product-list">
                 {itemProducts}
               <li></li>
             </div>
