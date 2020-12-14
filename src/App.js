@@ -6,6 +6,7 @@ import './App.scss';
 import Modal from './Modal/Modal'
 // import ModalMaterial from './Modal/ModalMaterial'
 import ProductsGrid from './Products/ProductsGrid'
+import Card from './Card/Card'
 
 class App extends Component {
   constructor() {
@@ -16,6 +17,7 @@ class App extends Component {
     return (
       // <Albom />
       <div>
+        <Card />
         <Modal />
         <ProductsGrid />
         {/* <ModalMaterial /> */}
