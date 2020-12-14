@@ -38,7 +38,6 @@ class ProductGrid extends Component {
         return(
             <div className="product-list">
                 {itemProducts}
-              <li></li>
             </div>
         )
     }

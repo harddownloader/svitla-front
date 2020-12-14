@@ -18,9 +18,9 @@ class ProductItem extends Component{
                         <p>{this.props.product.name}</p>
                     </div>
                     <div className="productPrice">
-                    <p>{this.props.product.price}</p>
+                        <p>{this.props.product.price}</p>
                     </div>
-                    
+
                     <button className="buyBtn">Buy</button>
                 </div>
             </div>
