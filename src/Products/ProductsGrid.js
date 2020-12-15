@@ -32,7 +32,7 @@ class ProductGrid extends Component {
 
     render() {
         const itemProducts = this.state.products.map((item, index) => {
-          return <ProductItem product={item} />
+          return <ProductItem key={index} product={item} />
         })
       
         return(

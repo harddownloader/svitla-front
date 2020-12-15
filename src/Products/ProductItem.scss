@@ -15,8 +15,14 @@
     margin: 5px 0px;
 }
 .productImg{}
-.productName{}
-.productPrice{}
+.productName{
+    font-size: 0.8em;
+}
+.productPrice{
+    font-size: 1em;
+}
 .buyBtn{
+    width: 40%;
     padding: 5px 10px;
+    font-size: 1em;
 }

@@ -1,5 +1,14 @@
 .card-container{
     width: 100%;
+    font-size: 1em;
+}
+.card-wrapper{
+    margin: 10px;
+    padding: 10px;
+    border-radius:10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 1em;
 }
 // head
 .card-header{}
@@ -7,9 +16,15 @@
 // body
 .card-body{}
 .card-table{}
-.table-heading{}
+.table-heading{
+    display: flex;
+    justify-content: space-around;
+}
 .table-heading span{}
-.table-content.list{}
+.table-content.list{
+    display: flex;
+    flex-direction: column;
+}
 // footer
 .card-footer{}
 .head-text{}

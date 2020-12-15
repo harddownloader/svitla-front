@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './Modal.scss'
+import './Modal.scoped.scss'
 
 class Modal extends Component{
     constructor() {
