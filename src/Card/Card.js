@@ -64,6 +64,17 @@ class Card extends Component {
   //   }))
   // }
 
+  deleteProductFromCart = (product) => {
+    // console.log(product)
+    const tmpProductsInCard = this.state.productsInCard
+    for(let i=0;i<tmpProductsInCard.length;i++) {
+     if( tmpProductsInCard[i].sku === product.sku ) tmpProductsInCard.splice(i, 1)
+    }
+    this.setState({
+      productsInCard: tmpProductsInCard
+    })
+  }
+
   render() {
     // console.log(this.props.addToCardProduct)
     let ListContent = <div></div>
@@ -74,7 +85,7 @@ class Card extends Component {
       // this.addToCardProduct(this.props.addToCardProduct)
 
       ListContent = this.state.productsInCard.map((product, index) => {
-        return <CardItem key={index} product={product} />
+        return <CardItem key={index} product={product} deleteProductFunc={this.deleteProductFromCart} />
         // return <div key={index}>item</div>
         // return <Test key={index} product={product} />
       })

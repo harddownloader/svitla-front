@@ -15,6 +15,10 @@ class CardIten extends Component {
     //     return (this.props.price * this.state.product.qta)
     // }
 
+    deleteProductFromCart = () => {
+        this.props.deleteProductFunc(this.state.product)
+    }
+
     changeQtaByInput = (e) => {
         this.setState({qta: e.target.value});
     }
@@ -51,7 +55,7 @@ class CardIten extends Component {
         return(
             <div className="list-item">
                 <div className="product-buttons">
-                    <span className="delete-btn btn"></span>
+                    <span className="delete-btn btn" onClick={this.deleteProductFromCart}></span>
                 </div>
                 <div className="product-img">
                     <img src={this.state.product.imageUrl} alt={this.state.product.imageAlt} />
