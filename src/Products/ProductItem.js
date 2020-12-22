@@ -5,11 +5,20 @@ import './ProductItem.scss';
 class ProductItem extends Component{
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            isButtonDisabled: false
+        }
     }
 
     addProductToCart = (product) => {
         this.props.addToCartProduct(product)
+        this.changeBuyBtnActivityStatus()
+    }
+
+    changeBuyBtnActivityStatus = () => {
+        this.setState({
+            isButtonDisabled: true
+          });
     }
     
     render() {
@@ -26,7 +35,7 @@ class ProductItem extends Component{
                         <p>{this.props.product.price}</p>
                     </div>
 
-                    <button onClick={this.addProductToCart.bind(this, this.props.product)} className="buyBtn">Buy</button>
+                    <button onClick={this.addProductToCart.bind(this, this.props.product)} className="buyBtn" disabled={this.state.isButtonDisabled}>Buy</button>
                 </div>
             </div>
         )

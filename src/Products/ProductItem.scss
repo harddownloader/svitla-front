@@ -26,3 +26,7 @@
     padding: 5px 10px;
     font-size: 1em;
 }
+
+.buyBtn:disabled{
+    opacity: 0.5;
+}
