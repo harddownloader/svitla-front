@@ -6,29 +6,29 @@ import './App.scss';
 import Modal from './Modal/Modal'
 // import ModalMaterial from './Modal/ModalMaterial'
 import ProductsGrid from './Products/ProductsGrid'
-import Card from './Card/Card'
+import Cart from './Cart/Cart'
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      // productForCard: {
+      // productForCart: {
       //   name: null,
       //   price: null,
       //   imageUrl: null,
       //   imageAlt: null,
       //   sku: null
       // }
-      productsListForCard: []
+      productsListForCart: []
     }
   }
 
   transferTheProductToTheBasket = (product) => {
     console.log(product)
     // this.setState(prevState => ({
-    //   productForCard: {
-    //     ...prevState.productForCard,
+    //   productForCart: {
+    //     ...prevState.productForCart,
     //     name: product.name,
     //     price: product.price,
     //     imageUrl: product.imageUrl,
@@ -36,18 +36,18 @@ class App extends Component {
     //     sku: product.sku
     //   }
     // }))
-    const currentProductList = this.state.productsListForCard
+    const currentProductList = this.state.productsListForCart
     currentProductList.push(product)
-    this.setState({productsListForCard: currentProductList})
+    this.setState({productsListForCart: currentProductList})
   }
 
   render() {
     return (
       // <Albom />
       <div className="app">
-        <Card addToCardProduct={this.state.productsListForCard}/>
+        <Cart addToCartProduct={this.state.productsListForCart}/>
         <Modal />
-        <ProductsGrid addToCardProduct={this.transferTheProductToTheBasket} />
+        <ProductsGrid addToCartProduct={this.transferTheProductToTheBasket} />
         {/* <ModalMaterial /> */}
       </div>
     );

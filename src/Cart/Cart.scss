@@ -1,8 +1,8 @@
-.card-container{
+.cart-container{
     width: 100%;
     font-size: 1em;
 }
-.card-wrapper{
+.cart-wrapper{
     margin: 10px;
     padding: 10px;
     border-radius:10px;
@@ -11,11 +11,11 @@
     padding: 1em;
 }
 // head
-.card-header{}
-.card-heading{}
+.cart-header{}
+.cart-heading{}
 // body
-.card-body{}
-.card-table{}
+.cart-body{}
+.cart-table{}
 .table-heading{
     display: flex;
     justify-content: space-around;
@@ -26,6 +26,6 @@
     flex-direction: column;
 }
 // footer
-.card-footer{}
+.cart-footer{}
 .head-text{}
 .total-price{}

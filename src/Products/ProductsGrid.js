@@ -33,13 +33,13 @@ class ProductGrid extends Component {
     }
   }
 
-  addToCardProduct = (product) => {
-    this.props.addToCardProduct(product)
+  addToCartProduct = (product) => {
+    this.props.addToCartProduct(product)
   }
 
   render() {
     const itemProducts = this.state.products.map((item, index) => {
-      return <ProductItem key={index} product={item} addToCardProduct={this.addToCardProduct} />
+      return <ProductItem key={index} product={item} addToCartProduct={this.addToCartProduct} />
     })
     
     return(

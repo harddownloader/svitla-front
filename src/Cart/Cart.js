@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 
-import './Card.scss'
-import CardItem from './CardItem'
+import './Cart.scss'
+import CartItem from './CartItem'
 
-class Card extends Component {
+class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productsInCard: [],
-      productsInCard: this.props.addToCardProduct
+      // productsInCart: [],
+      productsInCart: this.props.addToCartProduct
     }
   }
 
-  addToCardProduct = (product) => {
+  addToCartProduct = (product) => {
     console.log(product)
     // данный товар есть в корзине?
     // если есть , то меняем у него только кол-во
     // если нет то добавляем в массив корзины
-    // if(this.state.productsInCard.length > 0) {
+    // if(this.state.productsInCart.length > 0) {
       
     //   let findDuplicate = false
-    //   this.state.productsInCard.map( (productItem, index) => {
+    //   this.state.productsInCart.map( (productItem, index) => {
     //     if (productItem.sku === product.sku) {
     //       // this.changeQtaForDuplicate(productItem.qta, index)
     //       findDuplicate = true
@@ -39,25 +39,25 @@ class Card extends Component {
   }
 
   addNewProductToList = (product) => {
-    // this.state.productsInCard.push(product)
+    // this.state.productsInCart.push(product)
     console.log('product', product)
-    let tmpArr = this.state.productsInCard
+    let tmpArr = this.state.productsInCart
     console.log(tmpArr)
     tmpArr.push(product)
-    // this.setState({productsInCard: tmpArr})
+    // this.setState({productsInCart: tmpArr})
   }
     
     
   // changeQtaForDuplicate = (currentQta, itNumberInList) => {
   //   this.setState(prevState => ({
 
-  //     // productsInCard: prevState.productsInCard.map(el => {
+  //     // productsInCart: prevState.productsInCart.map(el => {
   //     //     el.itNumberInList === itNumberInList ? { ...el, qta: currentQta++ }: el
   //     //   }
   //     // )
-  //     productsInCard: [
-  //       ...prevState.productsInCard,
-  //       prevState.productsInCard[itNumberInList]: currentQta,
+  //     productsInCart: [
+  //       ...prevState.productsInCart,
+  //       prevState.productsInCart[itNumberInList]: currentQta,
   //     ]
     
     
@@ -66,26 +66,26 @@ class Card extends Component {
 
   deleteProductFromCart = (product) => {
     // console.log(product)
-    const tmpProductsInCard = this.state.productsInCard
-    for(let i=0;i<tmpProductsInCard.length;i++) {
-     if( tmpProductsInCard[i].sku === product.sku ) tmpProductsInCard.splice(i, 1)
+    const tmpProductsInCart = this.state.productsInCart
+    for(let i=0;i<tmpProductsInCart.length;i++) {
+     if( tmpProductsInCart[i].sku === product.sku ) tmpProductsInCart.splice(i, 1)
     }
     this.setState({
-      productsInCard: tmpProductsInCard
+      productsInCart: tmpProductsInCart
     })
   }
 
   render() {
-    // console.log(this.props.addToCardProduct)
+    // console.log(this.props.addToCartProduct)
     let ListContent = <div></div>
-    if (this.props.addToCardProduct.name !== null) {
-      // console.log(this.props.addToCardProduct)
+    if (this.props.addToCartProduct.name !== null) {
+      // console.log(this.props.addToCartProduct)
 
       console.log(this.props)
-      // this.addToCardProduct(this.props.addToCardProduct)
+      // this.addToCartProduct(this.props.addToCartProduct)
 
-      ListContent = this.state.productsInCard.map((product, index) => {
-        return <CardItem key={index} product={product} deleteProductFunc={this.deleteProductFromCart} />
+      ListContent = this.state.productsInCart.map((product, index) => {
+        return <CartItem key={index} product={product} deleteProductFunc={this.deleteProductFromCart} />
         // return <div key={index}>item</div>
         // return <Test key={index} product={product} />
       })
@@ -93,13 +93,13 @@ class Card extends Component {
     
 
     return(
-      <div className="card-container">
-        <div className="card-wrapper">
-          <div className="card-header">
-            <h3 className="card-heading">Ваш заказ</h3>
+      <div className="cart-container">
+        <div className="cart-wrapper">
+          <div className="cart-header">
+            <h3 className="cart-heading">Ваш заказ</h3>
           </div>
-          <div className="card-body">
-            <div className="card-table">
+          <div className="cart-body">
+            <div className="cart-table">
               <div className="table-heading">
                 <span>{/*for close btn(set flexes currently)*/}</span>
                 <span>{/*for img product(set flexes currently)*/}</span>
@@ -112,7 +112,7 @@ class Card extends Component {
               </div>
             </div>
           </div>
-          <div className="card-footer">
+          <div className="cart-footer">
               <p className="head-text">Сумма заказа: <strong className="total-price">0</strong></p>
           </div>
         </div>
@@ -121,4 +121,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default Cart;

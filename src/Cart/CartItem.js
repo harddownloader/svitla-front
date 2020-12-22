@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import './CardItem.scoped.scss'
+import './CartItem.scoped.scss'
 
-class CardIten extends Component {
+class CartIten extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -78,4 +78,4 @@ class CardIten extends Component {
     }
 }
 
-export default CardIten;
+export default CartIten;

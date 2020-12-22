@@ -8,8 +8,8 @@ class ProductItem extends Component{
         this.state = {}
     }
 
-    addProductToCard = (product) => {
-        this.props.addToCardProduct(product)
+    addProductToCart = (product) => {
+        this.props.addToCartProduct(product)
     }
     
     render() {
@@ -26,7 +26,7 @@ class ProductItem extends Component{
                         <p>{this.props.product.price}</p>
                     </div>
 
-                    <button onClick={this.addProductToCard.bind(this, this.props.product)} className="buyBtn">Buy</button>
+                    <button onClick={this.addProductToCart.bind(this, this.props.product)} className="buyBtn">Buy</button>
                 </div>
             </div>
         )
