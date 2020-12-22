@@ -4,7 +4,12 @@ import './ProductItem.scss';
 
 class ProductItem extends Component{
     constructor(props) {
-        super()
+        super(props)
+        this.state = {}
+    }
+
+    addProductToCard = (product) => {
+        this.props.addToCardProduct(product)
     }
     
     render() {
@@ -21,7 +26,7 @@ class ProductItem extends Component{
                         <p>{this.props.product.price}</p>
                     </div>
 
-                    <button className="buyBtn">Buy</button>
+                    <button onClick={this.addProductToCard.bind(this, this.props.product)} className="buyBtn">Buy</button>
                 </div>
             </div>
         )
