@@ -6,7 +6,8 @@ class ProductItem extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            isButtonDisabled: false
+            isButtonDisabled: false,
+            product: props.product
         }
     }
 
@@ -26,16 +27,16 @@ class ProductItem extends Component{
             <div className="product-card">
                 <div className="product-wrapper">
                     <div className="productImg">
-                        <img src={this.props.product.imageUrl} alt={this.props.product.imageAlt} />
+                        <img src={this.state.product.imageUrl} alt={this.state.product.imageAlt} />
                     </div>
                     <div className="productName">
-                        <p>{this.props.product.name}</p>
+                        <p>{this.state.product.name}</p>
                     </div>
                     <div className="productPrice">
-                        <p>{this.props.product.price}</p>
+                        <p>{this.state.product.price}</p>
                     </div>
 
-                    <button onClick={this.addProductToCart.bind(this, this.props.product)} className="buyBtn" disabled={this.state.isButtonDisabled}>Buy</button>
+                    <button onClick={this.addProductToCart.bind(this, this.state.product)} className="buyBtn" disabled={this.state.isButtonDisabled}>Buy</button>
                 </div>
             </div>
         )

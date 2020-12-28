@@ -65,14 +65,25 @@ class Cart extends Component {
   // }
 
   deleteProductFromCart = (product) => {
-    // console.log(product)
+    // console.log('product', product)
     const tmpProductsInCart = this.state.productsInCart
+    // console.log('tmpProductsInCart', tmpProductsInCart)
     for(let i=0;i<tmpProductsInCart.length;i++) {
-     if( tmpProductsInCart[i].sku === product.sku ) tmpProductsInCart.splice(i, 1)
+      console.log('tmpProductsInCart', tmpProductsInCart[i].sku)
+      console.log(product.sku)
+     if( Number(tmpProductsInCart[i].sku) === Number(product.sku) ) {
+      //  console.log(tmpProductsInCart[i].sku)
+      tmpProductsInCart.splice(i, 1)
+      console.log('tmpProductsInCart', tmpProductsInCart)
+
+      this.setState({
+        productsInCart: tmpProductsInCart
+      })
+
+      break
+     }
     }
-    this.setState({
-      productsInCart: tmpProductsInCart
-    })
+    
   }
 
   render() {
@@ -83,6 +94,7 @@ class Cart extends Component {
 
       console.log(this.props)
       // this.addToCartProduct(this.props.addToCartProduct)
+      console.log(this.state.productsInCart)
 
       ListContent = this.state.productsInCart.map((product, index) => {
         return <CartItem key={index} product={product} deleteProductFunc={this.deleteProductFromCart} />

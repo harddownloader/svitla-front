@@ -13,6 +13,7 @@ class ProductGrid extends Component {
           price: '99.00',
           imageUrl: '/assets/product1.jpeg',
           imageAlt: 'iphone',
+          qta: 1,
           sku: '000001'
         },
         {
@@ -20,6 +21,7 @@ class ProductGrid extends Component {
           price: '105.00',
           imageUrl: '/assets/product2.jpeg',
           imageAlt: 'iphone',
+          qta: 1,
           sku: '000002'
         },
         {
@@ -27,6 +29,7 @@ class ProductGrid extends Component {
           price: '129.00',
           imageUrl: '/assets/product3.jpeg',
           imageAlt: 'iphone',
+          qta: 1,
           sku: '000003'
         },
       ],
