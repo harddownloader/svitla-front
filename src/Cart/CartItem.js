@@ -71,9 +71,6 @@ class CartItem extends Component {
         } else {
             console.log(`Error: incorrect type, type = ${type}`)
         }
-
-        
-        console.error('qta запаздывает на 1 еденицу, почему так?')
     }
     
     /**

@@ -20,7 +20,7 @@ class Cart extends Component {
       // итоговая цена всех товаров в корзине
       allSum: 0,
       // список товаров в корзине от дочерних компоненов элементов корзины
-      currentProductsData: [],
+      // currentProductsData: [],
     }
   }
 
@@ -48,8 +48,8 @@ class Cart extends Component {
     // const needProduct = stateCopy.productsInCart.filter(el => el.sku == newProductData.sku )
     for (let i=0; i<stateCopy.productsInCart.length; i++) {
       if(stateCopy.productsInCart[i].sku === newProductData.sku) {
-        stateCopy.currentProductsData[i] = Object.assign({}, newProductData);
-        console.log('stateCopy.currentProductsData[i]', stateCopy.currentProductsData[i])
+        stateCopy.productsInCart[i] = Object.assign({}, newProductData);
+        console.log('stateCopy.currentProductsData[i]', stateCopy.productsInCart[i])
       }
     }
     
