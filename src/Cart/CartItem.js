@@ -40,7 +40,7 @@ class CartItem extends Component {
             this.setState({totalProductsPrice: finalPriceForProduct}, function() {
                 console.log('changeQtaCount qta', this.state.qta )
                 // передаем информацию об обновлении родителю
-                this.setNewProductData({
+                this.props.updateCurrentProductData({
                     sku: this.state.product.sku,
                     imageAlt: this.state.product.imageAlt,
                     imageUrl: this.state.product.imageUrl,

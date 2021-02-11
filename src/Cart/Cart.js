@@ -48,7 +48,7 @@ class Cart extends Component {
     // console.log('tmpProductsInCart', tmpProductsInCart)
 
     // ведет перебор по всем товарам в корзине
-    for(let i=0;i<tmpProductsInCart.length;i++) {
+    for(let i=0; i<tmpProductsInCart.length; i++) {
       console.log('tmpProductsInCart', tmpProductsInCart[i].sku)
       console.log(product.sku)
 
