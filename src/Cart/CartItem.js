@@ -7,46 +7,81 @@ class CartItem extends Component {
         super(props);
         this.state = {
             product: props.product,
-            qta: 1
+            qta: 1,
+            originalPrice: props.product.price,
+            totalProductsPrice: props.product.price
         }
     }
 
-    // getTotalCost = () => {
-    //     return (this.props.price * this.state.product.qta)
-    // }
-
+    /**
+     * метод сообщающий корзинке(родителю) про событие удаления товара из корзины
+     * @param {*} product 
+     */
     deleteProductFromCart = (product) => {
         this.props.deleteProductFunc(product)
     }
 
-    changeQtaByInput = (e) => {
-        this.setState({qta: e.target.value});
-    }
+    /**
+     * метод изменения значения кол-ва
+     * @param {String} type - делаем +1('plus') к кол-ву или -1('minus') к кол-ву товара
+     */
+    changeQtaCount = (type) => {
+        // берем кол-во со стейта
+        let qta = this.state.qta;
 
-    changeQtaCount = (type, currentQta) => {
-        console.log('changeQtaCount', type)
-        console.log('currentQta', currentQta)
-        // let qta = this.props.product.qta;
-        let qta = currentQta;
-        // const product = this.state.product
+        // для -1 от кол-ва
         if (type === 'minus') {
             const qtaMinus = this.checkQtaLimit(qta-1);
-            console.log('qtaMinus', qtaMinus)
-            // this.setState({qta: qtaMinus});
-            this.props.product.qta = qtaMinus
+            this.setState({qta: qtaMinus})
+
+            // получем ценну за все кол-во этого товара(цена*кол-во)
+            const finalPriceForProduct = Number(this.state.originalPrice) * qtaMinus
+            this.setState({totalProductsPrice: finalPriceForProduct}, function() {
+                console.log('changeQtaCount qta', this.state.qta )
+                this.setNewProductData({
+                    sku: this.state.product.sku,
+                    imageAlt: this.state.product.imageAlt,
+                    imageUrl: this.state.product.imageUrl,
+                    name: this.state.product.name,
+                    price: this.state.product.price,
+                    qta: this.state.qta,
+                    totalProductsPrice: this.state.totalProductsPrice
+                })
+            })
+        
+        // для +1 к кол-ву
         } else if (type === 'plus') {
-            console.log('product list', this.props.product )
             qta = Number(qta) + 1 
-            // const qtaPlus = this.checkQtaLimit(qta+1)
-            console.log('qtaPlus', qta)
-            // this.setState({qta: qtaPlus});
-            this.props.product.qta = qta
-            console.log('this.props.product.qta', this.props.product.qta)
+            this.setState({qta: qta})
+
+            // получем ценну за все кол-во этого товара(цена*кол-во)
+            const finalPriceForProduct = Number(this.state.originalPrice) * qta
+            this.setState({totalProductsPrice: finalPriceForProduct}, function() {
+                console.log('changeQtaCount qta', this.state.qta )
+                this.setNewProductData({
+                    sku: this.state.product.sku,
+                    imageAlt: this.state.product.imageAlt,
+                    imageUrl: this.state.product.imageUrl,
+                    name: this.state.product.name,
+                    price: this.state.product.price,
+                    qta: this.state.qta,
+                    totalProductsPrice: this.state.totalProductsPrice
+                })
+            })
         } else {
             console.log(`Error: incorrect type, type = ${type}`)
         }
+
+        
+        console.error('qta запаздывает на 1 еденицу, почему так?')
     }
     
+    /**
+     * метод устанавливает лимиты для поля кол-ва товара
+     * чтобы нельзя было загруть кол-во ниже 1
+     * и чтобы кол-во было не больше 100
+     * @param {Number} qta - кол-во товара
+     */
     checkQtaLimit = (qta) => {
         if (qta < 1) {
             return 1;
@@ -57,32 +92,45 @@ class CartItem extends Component {
         }
     }
 
+    /**
+     * 
+     */
+    setNewProductData = (product) => {
+        this.props.updateCurrentProductData(product)
+    }
+
     render() {
         return(
             <div className="list-item">
                 <div className="product-buttons">
+                    {/* кнопка удаления */}
                     <span className="delete-btn btn" onClick={this.deleteProductFromCart.bind(this, this.props.product)}></span>
                 </div>
                 <div className="product-img">
+                    {/* фото товара */}
                     <img src={this.props.product.imageUrl} alt={this.props.product.imageAlt} />
                 </div>
                 <div className="product-name">
+                    {/* название товара */}
                     <span>{this.props.product.name}</span>
                 </div>
                 <div className="product-quantity">
-                    <button className="plus-btn" type="button" name="button" onClick={this.changeQtaCount.bind(this, 'plus', this.props.product.qta)}>
+                    {/* кнопка на добавление кол-ва товара */}
+                    <button className="plus-btn" type="button" name="button" onClick={this.changeQtaCount.bind(this, 'plus')}>
                         <img src="/assets/icons/plus.svg" alt="" />
                     </button>
-                    {/* <input type="text" name="name" value={this.props.qta} onChange={this.changeQtaByInput}/> */}
-                    {/* ставим спан чтобы было безопаснее */}
 
-                    <span>{this.props.product.qta}</span>
+                    {/* выводим общее кол-во товара
+                      p.s. ставим <span>, а не <input> чтобы было безопаснее */}
+                    <span>{this.state.qta}</span>
 
+                    {/* кнопка на уменьшение кол-ва товара */}
                     <button className="minus-btn" type="button" name="button" onClick={this.changeQtaCount.bind(this, 'minus')}>
                         <img src="/assets/icons/minus.svg" alt="" />
                     </button>
                 </div>
-                <div className="product-cost">{/*this.state.product.totalCost*/} рублей</div>
+                {/* итоговая цена за товар(кол-во*цену) */}
+                <div className="product-cost">{this.state.totalProductsPrice} рублей</div>
             </div>
         )
     }
