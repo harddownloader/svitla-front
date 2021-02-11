@@ -21,17 +21,23 @@ class Cart extends Component {
   updateCurrentProductData = (newProductData) => {
     var stateCopy = Object.assign({}, this.state);
     stateCopy.productsInCart = stateCopy.productsInCart.slice();
-    // находим этот товар по sku
-    // const needProduct = stateCopy.productsInCart.filter(el => el.sku == newProductData.sku )
+    // находим этот товар по sku и обновляем
     for (let i=0; i<stateCopy.productsInCart.length; i++) {
       if(stateCopy.productsInCart[i].sku === newProductData.sku) {
+        // обновляем (вносим новые данные из дочки)
         stateCopy.productsInCart[i] = Object.assign({}, newProductData);
         console.log('stateCopy.currentProductsData[i]', stateCopy.productsInCart[i])
       }
     }
     
+    this.setState(stateCopy, function() {
+      // обновляем список для родителя
+      this.props.updateProductsInBasket(this.state.productsInCart)
+      // пересчитываем итоговый ценник
+      this.changeAllSum()
+    });
+
     
-    this.setState(stateCopy);
   }
 
   /**
@@ -61,8 +67,8 @@ class Cart extends Component {
         console.log('tmpProductsInCart', tmpProductsInCart)
 
         // перезаписывает список товаров в корзине
-        this.setState({
-          productsInCart: tmpProductsInCart
+        this.setState({productsInCart: tmpProductsInCart}, function () {
+          this.changeAllSum()
         })
 
         // заканчиваем цикл переборов товаров из корзины, так как был найден нужный
@@ -71,21 +77,26 @@ class Cart extends Component {
     }
   }
 
-  calcPriceAllProductsInCard = () => {
-    const allProducts = this.state.productsInCart
-    let totalPrice = 0
-    for(let i=0; i<allProducts.length; i++) {
-      totalPrice += Number(allProducts[i].price)
-    }
-    console.log(totalPrice)
-    return totalPrice
-  }
-
   /**
    * меняем значение итоговой суммы заказа
    */
   changeAllSum = () => {
-
+    const allProducts = this.state.productsInCart
+    console.log('allProducts', allProducts)
+    let needAllSum = 0
+    for(let i=0; i<allProducts.length; i++) {
+      // есть ли у объекта свойство с значением цены за все кол-во
+      if (allProducts[i].hasOwnProperty('totalProductsPrice')) {
+        // если есть (т.е. кол-во изменялось) берем подчитанное значение
+        needAllSum = needAllSum + Number(allProducts[i].totalProductsPrice)
+      } else {
+        // если такого свойста нет, значит кол-во мы не меняли, значит оно равно 1
+        needAllSum = needAllSum + Number(allProducts[i].price)
+      }
+      
+    }
+    console.log('needAllSum', needAllSum)
+    this.setState({allSum: needAllSum})
   }
 
   render() {
@@ -99,6 +110,7 @@ class Cart extends Component {
                   product={product}
                   deleteProductFunc={this.deleteProductFromCart}
                   updateCurrentProductData={this.updateCurrentProductData}
+                  changeAllSum={this.changeAllSum}
                 />
       })
     }

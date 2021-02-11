@@ -13,6 +13,12 @@ class CartItem extends Component {
         }
     }
 
+    componentDidMount() {
+        // при добалении компонента
+        // пересчитываем итоговую сумму заказа в родителе
+        this.props.changeAllSum()
+    }
+
     /**
      * метод сообщающий корзинке(родителю) про событие удаления товара из корзины
      * @param {*} product 

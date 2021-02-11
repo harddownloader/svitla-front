@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom'
 
 import './App.scss';
-// import Albom from './Album'
+// import Albom from './Layout/Album'
 import Modal from './Modal/Modal'
 // import ModalMaterial from './Modal/ModalMaterial'
 import ProductsGrid from './Products/ProductsGrid'
@@ -11,31 +11,25 @@ import Cart from './Cart/Cart'
 class App extends Component {
   constructor() {
     super()
-
     this.state = {
-      // productForCart: {
-      //   name: null,
-      //   price: null,
-      //   imageUrl: null,
-      //   imageAlt: null,
-      //   sku: null
-      // }
       productsListForCart: []
     }
   }
+  /**
+   * обновляем список товаров в корзине
+   * @param {Array} newList - новый список товаров, который уже в корзине
+   */
+  updateProductsInBasket = (newList) => {
+    this.setState({productsListForCart: newList})
+  }
 
+  /**
+   * получаем новый товар, который добавляем к списку товаров для корзины
+   * и отправляем корзине
+   * @param {Object} product - новый товар для корзины
+   */
   transferTheProductToTheBasket = (product) => {
     console.log(product)
-    // this.setState(prevState => ({
-    //   productForCart: {
-    //     ...prevState.productForCart,
-    //     name: product.name,
-    //     price: product.price,
-    //     imageUrl: product.imageUrl,
-    //     imageAlt: product.imageAlt,
-    //     sku: product.sku
-    //   }
-    // }))
     const currentProductList = this.state.productsListForCart
     currentProductList.push(product)
     this.setState({productsListForCart: currentProductList})
@@ -45,7 +39,10 @@ class App extends Component {
     return (
       // <Albom />
       <div className="app">
-        <Cart addToCartProduct={this.state.productsListForCart}/>
+        <Cart
+          addToCartProduct={this.state.productsListForCart}
+          updateProductsInBasket={this.updateProductsInBasket}
+          />
         <Modal />
         <ProductsGrid addToCartProduct={this.transferTheProductToTheBasket} />
         {/* <ModalMaterial /> */}
