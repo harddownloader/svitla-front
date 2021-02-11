@@ -9,33 +9,10 @@ class Cart extends Component {
     this.state = {
       // список товаров в корзине(из кнопок покупки)
       productsInCart: this.props.addToCartProduct,
-      // productsInCart: {
-      //   imageAlt: this.props.addToCartProduct.imageAlt,
-      //   imageUrl: this.props.addToCartProduct.imageUrl,
-      //   name: this.props.addToCartProduct.name,
-      //   price: this.props.addToCartProduct.price,
-      //   qta: this.props.addToCartProduct.qta,
-      //   sku: this.props.addToCartProduct.sku
-      // },
       // итоговая цена всех товаров в корзине
       allSum: 0,
-      // список товаров в корзине от дочерних компоненов элементов корзины
-      // currentProductsData: [],
     }
   }
-
-  // testUpdate = () => {
-  //   const products = this.state.productsInCart
-  //   const newProductsList = []
-  //   for(let i=0;i<products.length;i++) {
-  //     products[i].qta = products[i].qta + 1
-  //     const newProduct = Object.assign({}, products[i])
-  //     newProductsList.push(newProduct)
-  //   }
-  //   console.log('newProductsList', newProductsList)
-  //   this.setState({productsInCart: newProductsList})
-  // }
-
 
   /**
    * обновление информации о товарах в корзине при изменении их кол-ва, добавления/удаления их 
@@ -55,8 +32,6 @@ class Cart extends Component {
     
     
     this.setState(stateCopy);
-
-    // this.setState({currentProductData: newProductsData})
   }
 
   /**

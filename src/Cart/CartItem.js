@@ -36,8 +36,10 @@ class CartItem extends Component {
 
             // получем ценну за все кол-во этого товара(цена*кол-во)
             const finalPriceForProduct = Number(this.state.originalPrice) * qtaMinus
+            // сохраняем новую общую цену для товара и после передаем эту информацию родителю
             this.setState({totalProductsPrice: finalPriceForProduct}, function() {
                 console.log('changeQtaCount qta', this.state.qta )
+                // передаем информацию об обновлении родителю
                 this.setNewProductData({
                     sku: this.state.product.sku,
                     imageAlt: this.state.product.imageAlt,
@@ -54,11 +56,13 @@ class CartItem extends Component {
             qta = Number(qta) + 1 
             this.setState({qta: qta})
 
-            // получем ценну за все кол-во этого товара(цена*кол-во)
+            // получем цену за все кол-во этого товара(цена*кол-во)
             const finalPriceForProduct = Number(this.state.originalPrice) * qta
+            // сохраняем новую общую цену для товара и после передаем эту информацию родителю
             this.setState({totalProductsPrice: finalPriceForProduct}, function() {
                 console.log('changeQtaCount qta', this.state.qta )
-                this.setNewProductData({
+                // передаем информацию об обновлении родителю
+                this.props.updateCurrentProductData({
                     sku: this.state.product.sku,
                     imageAlt: this.state.product.imageAlt,
                     imageUrl: this.state.product.imageUrl,
@@ -87,13 +91,6 @@ class CartItem extends Component {
         } else {
             return qta;
         }
-    }
-
-    /**
-     * 
-     */
-    setNewProductData = (product) => {
-        this.props.updateCurrentProductData(product)
     }
 
     render() {
