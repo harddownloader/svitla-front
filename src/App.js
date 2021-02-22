@@ -29,7 +29,7 @@ class App extends Component {
    * @param {Object} product - новый товар для корзины
    */
   transferTheProductToTheBasket = (product) => {
-    console.log(product)
+    // console.log('transferTheProductToTheBasket product', product)
     const currentProductList = this.state.productsListForCart
     currentProductList.push(product)
     this.setState({productsListForCart: currentProductList})
@@ -44,7 +44,10 @@ class App extends Component {
           updateProductsInBasket={this.updateProductsInBasket}
           />
         <Modal />
-        <ProductsGrid addToCartProduct={this.transferTheProductToTheBasket} />
+        <ProductsGrid
+          addToCartProduct={this.transferTheProductToTheBasket}
+          productsListForCart={this.state.productsListForCart}
+        />
         {/* <ModalMaterial /> */}
       </div>
     );

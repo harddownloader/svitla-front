@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import './Cart.scss'
 import CartItem from './CartItem'
 
+/**
+ * корзина товаров
+ */
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +22,7 @@ class Cart extends Component {
    * @param {*} newProductsData - массив с товарами
    */
   updateCurrentProductData = (newProductData) => {
+    console.log('newProductData', newProductData)
     var stateCopy = Object.assign({}, this.state);
     stateCopy.productsInCart = stateCopy.productsInCart.slice();
     // находим этот товар по sku и обновляем
@@ -36,8 +40,6 @@ class Cart extends Component {
       // пересчитываем итоговый ценник
       this.changeAllSum()
     });
-
-    
   }
 
   /**
@@ -62,12 +64,30 @@ class Cart extends Component {
       if( Number(tmpProductsInCart[i].sku) === Number(product.sku) ) {
         // console.log(tmpProductsInCart[i].sku)
 
+        if(product.price !== product.originalPrice) {
+          // товар скидочный
+          console.log('скидочный')
+        } else {
+          console.log('не скидочный' , tmpProductsInCart.length )
+          if (tmpProductsInCart.length >= 2) {
+            let nextProductNumber = i + 1
+            // console.log('price before tmpProductsInCart[count].price', tmpProductsInCart[count].price)
+            tmpProductsInCart[nextProductNumber].price = tmpProductsInCart[nextProductNumber].originalPrice
+            tmpProductsInCart[nextProductNumber].totalProductsPrice = tmpProductsInCart[nextProductNumber].price * tmpProductsInCart[nextProductNumber].qta
+
+            // console.log('price after tmpProductsInCart[count].price', tmpProductsInCart[count].price)
+          }
+          
+        }
+
         // удаляет найденый товар с корзины
         tmpProductsInCart.splice(i, 1)
         console.log('tmpProductsInCart', tmpProductsInCart)
+        
 
         // перезаписывает список товаров в корзине
         this.setState({productsInCart: tmpProductsInCart}, function () {
+          console.log('state after del prod', this.state.productsInCart)
           this.changeAllSum()
         })
 
@@ -96,6 +116,7 @@ class Cart extends Component {
       
     }
     console.log('needAllSum', needAllSum)
+    // console.log('products in cart changeAllSum', this.state.productsInCart)
     this.setState({allSum: needAllSum})
   }
 
@@ -104,6 +125,7 @@ class Cart extends Component {
     let ListContent = <div></div>
     if (this.props.addToCartProduct.name !== null) {
       // делаем вывод товаров в корзине одним за одним
+      console.log('this.state.productsInCart', this.state.productsInCart)
       ListContent = this.state.productsInCart.map((product, index) => {
         return <CartItem
                   key={index}
